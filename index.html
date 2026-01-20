@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athithyaraagul | Data Engineering Pipelines</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;700&display=swap');
+        
+        :root {
+            --bg-dark: #0b0f19;
+            --panel-bg: #111827;
+            --accent-blue: #3b82f6;
+        }
+
+        body { background-color: var(--bg-dark); color: #f3f4f6; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .font-code { font-family: 'JetBrains Mono', monospace; }
+
+        /* JSON Highlighting */
+        .key { color: #93c5fd; } 
+        .string { color: #a7f3d0; } 
+        .number { color: #fca5a5; } 
+        .bracket { color: #e5e7eb; }
+
+        /* Pipeline Flow Animation */
+        .pipeline-connector {
+            position: relative;
+            height: 2px;
+            background: #374151;
+            width: 100%;
+            margin: 0 10px;
+            overflow: hidden;
+        }
+        .pipeline-connector::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 20%; height: 100%;
+            background: linear-gradient(90deg, transparent, #60a5fa, transparent);
+            animation: flow 2s infinite linear;
+        }
+        @keyframes flow { 0% { left: -20%; } 100% { left: 100%; } }
+
+        /* SCROLL REVEAL ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Node Styling */
+        .node {
+            background: #1f2937;
+            border: 1px solid #374151;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        .node:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); }
+
+        /* Photo Glow */
+        .photo-glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+        .photo-glow:hover {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <nav class="fixed top-0 w-full z-50 border-b border-gray-800 bg-[#0b0f19]/90 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-6">
+                <div class="text-sm font-code font-bold text-blue-400">
+                    <i class="fas fa-cube mr-2"></i>ATHITHYARAAGUL_WORKSPACE
+                </div>
+                <div class="hidden md:flex text-xs text-gray-500 font-code gap-2">
+                    <span>src</span> <span>/</span> <span>pipelines</span> <span>/</span> <span class="text-gray-300">main.py</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <div class="flex gap-4 text-gray-400">
+                    <a href="https://linkedin.com/in/athithyaraagul" target="_blank" class="hover:text-blue-400 transition transform hover:-translate-y-0.5"><i class="fab fa-linkedin text-lg"></i></a>
+                    <a href="https://github.com/Athithyaraagul" target="_blank" class="hover:text-white transition transform hover:-translate-y-0.5"><i class="fab fa-github text-lg"></i></a>
+                </div>
+                
+                <div class="h-4 w-px bg-gray-700"></div> <a href="#pipelines" class="text-xs font-code text-gray-400 hover:text-white transition hidden sm:block">[ PIPELINES ]</a>
+                <a href="mailto:athithyaraagul05@gmail.com" class="text-xs font-code bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition shadow-lg shadow-blue-900/20">EXECUTE_CONTACT()</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="config" class="min-h-screen flex flex-col justify-center relative pt-20 pb-12">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+            
+            <div class="lg:col-span-7 reveal active flex flex-col justify-center">
+                
+                <div class="mb-8">
+                    <img src="profile.png" 
+                         alt="Athithyaraagul Profile" 
+                         class="w-24 h-24 md:w-32 md:h-32 rounded-full border-2 border-blue-500/50 object-cover photo-glow">
+                </div>
+
+                <div class="inline-flex items-center gap-2 px-3 py-1 w-fit rounded-full bg-blue-900/10 border border-blue-800/50 text-blue-400 text-xs font-code mb-6">
+                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                    SYSTEM STATUS: ONLINE
+                </div>
+
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight tracking-tight">
+                    Engineering <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Reliable Data Flow</span>
+                </h1>
+
+                <div class="text-gray-400 text-lg leading-relaxed max-w-xl space-y-4">
+                    <p>
+                        I am a <strong>Data Engineer</strong> and final-year Computer Science undergraduate with a production-grade mindset. I specialize in building scalable ETL pipelines and cloud-native architectures.
+                    </p>
+                    <p>
+                        My experience involves designing fault-tolerant data workflows on <strong>Google Cloud Platform (Dataflow, BigQuery)</strong> and <strong>AWS</strong>. I leverage proficiency in <strong>Python, SQL, and Bash</strong> to automate operational workflows and optimize data ingestion for high-performance analytics.
+                    </p>
+                </div>
+                
+                <div class="flex gap-12 border-t border-gray-800 pt-8 mt-8">
+                    <div>
+                        <div class="text-3xl font-bold text-white">3+</div>
+                        <div class="text-xs text-gray-500 font-code uppercase mt-1 tracking-wider">Cloud Pipelines</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-white">GCP</div>
+                        <div class="text-xs text-gray-500 font-code uppercase mt-1 tracking-wider">Primary Cloud</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-white">100%</div>
+                        <div class="text-xs text-gray-500 font-code uppercase mt-1 tracking-wider">Automation</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 bg-[#111827] border border-gray-800 rounded-xl p-6 shadow-2xl overflow-hidden relative group reveal active delay-200 hover:border-blue-500/30 transition duration-500 transform hover:-translate-y-1">
+                <div class="flex gap-2 mb-4 border-b border-gray-800 pb-4">
+                    <div class="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
+                    <div class="ml-auto text-xs text-gray-500 font-code">user_profile.json</div>
+                </div>
+
+                <pre class="font-code text-xs md:text-sm leading-relaxed overflow-x-auto custom-scrollbar">
+<span class="bracket">{</span>
+  <span class="key">"candidate"</span>: <span class="string">"Athithyaraagul Sureshkumar"</span>,
+  <span class="key">"status"</span>: <span class="string">"Final Year Undergrad"</span>,
+  <span class="key">"focus"</span>: <span class="string">"Scalable Data Systems"</span>,
+  <span class="key">"stack"</span>: <span class="bracket">{</span>
+    <span class="key">"languages"</span>: <span class="bracket">[</span><span class="string">"Python"</span>, <span class="string">"SQL"</span>, <span class="string">"Bash"</span><span class="bracket">]</span>,
+    <span class="key">"cloud"</span>: <span class="bracket">[</span><span class="string">"GCP Dataflow"</span>, <span class="string">"BigQuery"</span>, <span class="string">"AWS"</span><span class="bracket">]</span>,
+    <span class="key">"big_data"</span>: <span class="bracket">[</span><span class="string">"Hadoop"</span>, <span class="string">"Hive"</span>, <span class="string">"Spark"</span><span class="bracket">]</span>
+  <span class="bracket">}</span>,
+  <span class="key">"education"</span>: <span class="bracket">{</span>
+    <span class="key">"major"</span>: <span class="string">"Computer Science & Business"</span>,
+    <span class="key">"graduating"</span>: <span class="number">2026</span>
+  <span class="bracket">}</span>,
+  <span class="key">"location"</span>: <span class="string">"India"</span>
+<span class="bracket">}</span></pre>
+            </div>
+        </div>
+
+        <a href="#pipelines" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 group cursor-pointer opacity-50 hover:opacity-100 transition">
+            <span class="text-[10px] font-code text-gray-400 group-hover:text-white transition tracking-widest uppercase">View Architecture</span>
+            <div class="w-5 h-8 border border-gray-600 rounded-full flex justify-center pt-2 group-hover:border-white transition">
+                <div class="w-1 h-1 bg-blue-400 rounded-full animate-bounce"></div>
+            </div>
+        </a>
+    </section>
+
+    <section id="pipelines" class="bg-[#0b0f19] border-t border-gray-800 py-24 min-h-screen">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16 flex flex-col md:flex-row md:justify-between md:items-end reveal">
+                <div class="max-w-2xl">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">Pipeline Architectures</h2>
+                    <p class="text-gray-400 text-lg">Visualizing the data flow of my key production-grade projects.</p>
+                </div>
+                <div class="text-xs font-code text-gray-600 mt-4 md:mt-0 bg-gray-900 px-3 py-1 rounded border border-gray-800">
+                    // displaying active_jobs: 3
+                </div>
+            </div>
+
+            <div class="space-y-12">
+
+                <div class="reveal delay-100 bg-[#111827] border border-gray-800 rounded-xl p-8 hover:border-blue-500/30 transition duration-300 shadow-lg">
+                    <div class="flex flex-col md:flex-row justify-between mb-8 gap-4">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <h3 class="text-2xl font-bold text-white">Streaming ETL Pipeline</h3>
+                                <span class="bg-blue-900/20 text-blue-400 text-xs px-2 py-1 rounded font-code border border-blue-800/50">REAL-TIME</span>
+                            </div>
+                            <p class="text-sm text-gray-400 max-w-2xl leading-relaxed">
+                                Architected a serverless streaming pipeline to ingest JSON events. 
+                                Automated via gcloud CLI with IAM security.
+                            </p>
+                        </div>
+                        <div class="md:text-right">
+                             <a href="https://github.com/Athithyaraagul/dataflow-pubsub-to-bigquery" target="_blank" class="text-xs text-blue-400 hover:text-white font-code border-b border-blue-400/30 pb-0.5 transition">view_source_code -></a>
+                        </div>
+                    </div>
+
+                    <div class="bg-[#0b0f19] rounded-lg p-8 border border-gray-800 overflow-x-auto relative">
+                        <div class="absolute top-1/2 left-0 w-full h-px bg-gray-800 -z-0"></div>
+                        
+                        <div class="flex items-center min-w-[600px] justify-between relative z-10">
+                            <div class="flex flex-col items-center gap-3 w-40 group">
+                                <div class="node border-yellow-700/30 bg-[#0b0f19] text-yellow-500 w-full justify-center py-3">
+                                    <i class="fas fa-bolt"></i> Source
+                                </div>
+                                <span class="text-xs text-gray-500 font-code group-hover:text-yellow-500 transition">Pub/Sub</span>
+                            </div>
+                            
+                            <div class="pipeline-connector mx-4"></div>
+                            
+                            <div class="flex flex-col items-center gap-3 w-48 group">
+                                <div class="node border-blue-700/30 bg-[#0b0f19] text-blue-400 w-full justify-center py-3">
+                                    <i class="fas fa-cog fa-spin" style="animation-duration: 4s"></i> Transform
+                                </div>
+                                <span class="text-xs text-gray-500 font-code group-hover:text-blue-400 transition">Dataflow (Beam)</span>
+                            </div>
+                            
+                            <div class="pipeline-connector mx-4"></div>
+                            
+                            <div class="flex flex-col items-center gap-3 w-40 group">
+                                <div class="node border-green-700/30 bg-[#0b0f19] text-green-400 w-full justify-center py-3">
+                                    <i class="fas fa-database"></i> Sink
+                                </div>
+                                <span class="text-xs text-gray-500 font-code group-hover:text-green-400 transition">BigQuery DW</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <div class="reveal delay-200 bg-[#111827] border border-gray-800 rounded-xl p-6 md:p-8 hover:border-blue-500/30 transition shadow-lg flex flex-col">
+                        <div class="mb-6">
+                            <div class="flex justify-between items-start mb-3">
+                                <div class="flex flex-wrap items-center gap-3">
+                                    <h3 class="text-xl font-bold text-white">GCP Batch Ingestion</h3>
+                                    <span class="bg-gray-800 text-gray-300 text-xs px-2 py-1 rounded font-code border border-gray-700">BATCH</span>
+                                </div>
+                                <a href="https://github.com/Athithyaraagul/dataflow-gcs-to-bigquery-batch-processing" target="_blank" class="text-xs text-blue-400 hover:text-white font-code border-b border-blue-400/30 pb-0.5 transition">source -></a>
+                            </div>
+                            <p class="text-sm text-gray-400 leading-relaxed">
+                                Ingested CSVs from Storage to BigQuery with a JavaScript transformation layer for schema enforcement.
+                            </p>
+                        </div>
+                        
+                        <div class="flex items-center justify-between text-xs font-code text-gray-500 bg-[#0b0f19] p-4 rounded border border-gray-800 mt-auto">
+                            <span class="flex items-center gap-2 text-gray-400"><i class="fas fa-cloud text-blue-400"></i> GCS</span>
+                            <span class="text-gray-700">→</span>
+                            <span class="flex items-center gap-2 text-gray-300"><i class="fab fa-js text-yellow-400"></i> JS</span>
+                            <span class="text-gray-700">→</span>
+                            <span class="flex items-center gap-2 text-green-400"><i class="fas fa-database"></i> BQ</span>
+                        </div>
+                    </div>
+
+                    <div class="reveal delay-300 bg-[#111827] border border-gray-800 rounded-xl p-6 md:p-8 hover:border-blue-500/30 transition shadow-lg flex flex-col">
+                         <div class="mb-6">
+                            <div class="flex justify-between items-start mb-3">
+                                <div class="flex flex-wrap items-center gap-3">
+                                    <h3 class="text-xl font-bold text-white">Hadoop Orchestration</h3>
+                                    <span class="bg-purple-900/20 text-purple-400 text-xs px-2 py-1 rounded font-code border border-purple-800/50">ON-PREM</span>
+                                </div>
+                                <a href="https://github.com/Athithyaraagul/Hadoop-Incremental-Pipeline" target="_blank" class="text-xs text-blue-400 hover:text-white font-code border-b border-blue-400/30 pb-0.5 transition">source -></a>
+                            </div>
+                            <p class="text-sm text-gray-400 leading-relaxed">
+                                Distributed pipeline using Bash/Cron for zero-touch scheduling and Hive Partitioning for optimization.
+                            </p>
+                        </div>
+                        
+                        <div class="flex items-center justify-between text-xs font-code text-gray-500 bg-[#0b0f19] p-4 rounded border border-gray-800 mt-auto">
+                            <span class="flex items-center gap-2 text-gray-400"><i class="fas fa-terminal text-purple-400"></i> Bash</span>
+                            <span class="text-gray-700">→</span>
+                            <span class="flex items-center gap-2 text-gray-300"><i class="fas fa-server text-white"></i> Hive</span>
+                            <span class="text-gray-700">→</span>
+                            <span class="flex items-center gap-2 text-gray-400"><i class="fas fa-hdd"></i> HDFS</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#0b0f19] border-t border-gray-800 py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-gray-500 text-xs font-code">
+            <p>&copy; 2026 Athithyaraagul Sureshkumar. Process finished with exit code 0.</p>
+            <div class="flex gap-6 mt-4 md:mt-0">
+                <a href="https://linkedin.com/in/athithyaraagul" class="hover:text-white transition">LINKEDIN</a>
+                <a href="https://github.com/Athithyaraagul" class="hover:text-white transition">GITHUB</a>
+                <a href="mailto:athithyaraagul05@gmail.com" class="hover:text-white transition">EMAIL</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 50;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+
+</body>
+</html>
