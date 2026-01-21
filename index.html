@@ -3,9 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Athithyaraagul</title>
+    <title>Athithyaraagul Sureshkumar</title>
+    <meta name="description" content="Portfolio of Athithyaraagul Sureshkumar, a Data Engineer specializing in GCP, AWS, and Scalable ETL Pipelines. Final Year Computer Science Undergraduate.">
+    <meta name="keywords" content="Data Engineer, ETL, GCP, AWS, Python, SQL, BigQuery, Dataflow, Portfolio">
+    <meta name="author" content="Athithyaraagul Sureshkumar">
+    
+    <meta property="og:title" content="Athithyaraagul Sureshkumar | Data Engineer">
+    <meta property="og:description" content="Building reliable data flow with GCP, AWS, and Python. View my production-grade pipelines and projects.">
+    <meta property="og:image" content="profile.png"> <meta property="og:url" content="https://athithyaraagul.com"> <meta property="og:type" content="website">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Athithyaraagul Sureshkumar",
+      "jobTitle": "Data Engineer",
+      "alumniOf": "SRM Institute of Science and Technology",
+      "knowsAbout": ["Data Engineering", "GCP", "AWS", "Python", "SQL", "ETL"],
+      "url": "https://athithyaraagul.com",
+      "sameAs": [
+        "https://linkedin.com/in/athithyaraagul",
+        "https://github.com/Athithyaraagul"
+      ]
+    }
+    </script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;700&display=swap');
         
@@ -15,7 +40,7 @@
             --accent-blue: #3b82f6;
         }
 
-        /* Data Grid Background */
+        /* DATA GRID BACKGROUND */
         body { 
             background-color: var(--bg-dark); 
             color: #f3f4f6; 
@@ -24,22 +49,22 @@
             
             /* The "Data" Pattern: A subtle grid with a central glow */
             background-image: 
-                radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 60%), /* Center Glow */
-                linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px), /* Horizontal Lines */
-                linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px); /* Vertical Lines */
-            background-size: 100% 100%, 50px 50px, 50px 50px; /* Grid spacing */
-            background-attachment: fixed; /* Keeps pattern static while scrolling */
+                radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 60%),
+                linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+            background-size: 100% 100%, 50px 50px, 50px 50px;
+            background-attachment: fixed;
         }
 
         .font-code { font-family: 'JetBrains Mono', monospace; }
 
-        /* JSON Highlighting */
+        /* SYNTAX HIGHLIGHTING */
         .key { color: #93c5fd; } 
         .string { color: #a7f3d0; } 
         .number { color: #fca5a5; } 
         .bracket { color: #e5e7eb; }
 
-        /* Pipeline Flow Animation */
+        /* ANIMATIONS */
         .pipeline-connector {
             position: relative;
             height: 2px;
@@ -58,7 +83,6 @@
         }
         @keyframes flow { 0% { left: -20%; } 100% { left: 100%; } }
 
-        /* SCROLL REVEAL ANIMATIONS */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -68,12 +92,11 @@
             opacity: 1;
             transform: translateY(0);
         }
-
         .delay-100 { transition-delay: 100ms; }
         .delay-200 { transition-delay: 200ms; }
         .delay-300 { transition-delay: 300ms; }
 
-        /* Node Styling */
+        /* UTILITIES */
         .node {
             background: #1f2937;
             border: 1px solid #374151;
@@ -88,7 +111,6 @@
         }
         .node:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); }
 
-        /* Photo Glow */
         .photo-glow {
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
             transition: box-shadow 0.3s ease;
@@ -97,14 +119,8 @@
             box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
         }
 
-        /* Hide Scrollbar but keep functionality */
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -122,11 +138,12 @@
 
             <div class="flex items-center gap-4 md:gap-6">
                 <div class="hidden sm:flex gap-4 text-gray-400">
-                    <a href="https://linkedin.com/in/athithyaraagul" target="_blank" class="hover:text-blue-400 transition transform hover:-translate-y-0.5"><i class="fab fa-linkedin text-lg"></i></a>
-                    <a href="https://github.com/Athithyaraagul" target="_blank" class="hover:text-white transition transform hover:-translate-y-0.5"><i class="fab fa-github text-lg"></i></a>
+                    <a href="https://linkedin.com/in/athithyaraagul" target="_blank" aria-label="LinkedIn Profile" class="hover:text-blue-400 transition transform hover:-translate-y-0.5"><i class="fab fa-linkedin text-lg"></i></a>
+                    <a href="https://github.com/Athithyaraagul" target="_blank" aria-label="GitHub Profile" class="hover:text-white transition transform hover:-translate-y-0.5"><i class="fab fa-github text-lg"></i></a>
                 </div>
                 
-                <div class="hidden sm:block h-4 w-px bg-gray-700"></div> <a href="#pipelines" class="text-xs font-code text-gray-400 hover:text-white transition hidden sm:block">[ PIPELINES ]</a>
+                <div class="hidden sm:block h-4 w-px bg-gray-700"></div> 
+                <a href="#pipelines" class="text-xs font-code text-gray-400 hover:text-white transition hidden sm:block">[ PIPELINES ]</a>
                 <a href="mailto:athithyaraagul05@gmail.com" class="text-[10px] md:text-xs font-code bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 md:px-4 md:py-2 rounded transition shadow-lg shadow-blue-900/20 whitespace-nowrap">EXECUTE_CONTACT()</a>
             </div>
         </div>
@@ -136,10 +153,10 @@
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center w-full">
             
             <div class="lg:col-span-5 reveal active flex flex-col justify-center">
-                
                 <div class="mb-8">
                     <img src="profile.png" 
-                         alt="Athithyaraagul Profile" 
+                         alt="Athithyaraagul Profile Picture" 
+                         loading="eager"
                          class="w-20 h-20 md:w-32 md:h-32 rounded-full border-2 border-blue-500/50 object-cover photo-glow">
                 </div>
 
@@ -205,7 +222,7 @@
             </div>
         </div>
 
-        <a href="#experience" class="absolute bottom-4 lg:bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 group cursor-pointer opacity-50 hover:opacity-100 transition hidden lg:flex">
+        <a href="#experience" aria-label="Scroll to Experience" class="absolute bottom-4 lg:bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 group cursor-pointer opacity-50 hover:opacity-100 transition hidden lg:flex">
             <span class="text-[10px] font-code text-gray-400 group-hover:text-white transition tracking-widest uppercase">View Experience</span>
             <div class="w-5 h-8 border border-gray-600 rounded-full flex justify-center pt-2 group-hover:border-white transition">
                 <div class="w-1 h-1 bg-blue-400 rounded-full animate-bounce"></div>
@@ -216,7 +233,7 @@
     <section id="experience" class="bg-[#0b0f19] border-t border-gray-800 py-16">
         <div class="max-w-7xl mx-auto px-6 reveal">
             <h2 class="text-2xl md:text-3xl font-bold mb-8 text-white flex items-center gap-3">
-                <i class="fas fa-history text-blue-500 text-xl"></i> Runtime History
+                <i class="fas fa-history text-blue-500 text-xl" aria-hidden="true"></i> Runtime History
             </h2>
             
             <div class="bg-[#111827] border-l-4 border-blue-500 rounded-r-xl p-6 md:p-8 hover:bg-[#161e31] transition group">
@@ -227,7 +244,7 @@
                     </div>
                     <div class="flex flex-col md:items-end gap-2">
                         <span class="text-xs font-code text-gray-500 bg-gray-900 px-2 py-1 rounded border border-gray-800">Jun 2023 - Jul 2023</span>
-                        <span class="text-xs font-code text-green-400"><i class="fas fa-check-circle"></i> Executed Successfully</span>
+                        <span class="text-xs font-code text-green-400"><i class="fas fa-check-circle" aria-hidden="true"></i> Executed Successfully</span>
                     </div>
                 </div>
                 
@@ -286,7 +303,7 @@
                         <div class="flex items-center min-w-[600px] justify-between relative z-10">
                             <div class="flex flex-col items-center gap-3 w-40 group">
                                 <div class="node border-yellow-700/30 bg-[#0b0f19] text-yellow-500 w-full justify-center py-3">
-                                    <i class="fas fa-bolt"></i> Source
+                                    <i class="fas fa-bolt" aria-hidden="true"></i> Source
                                 </div>
                                 <span class="text-xs text-gray-500 font-code group-hover:text-yellow-500 transition">Pub/Sub</span>
                             </div>
@@ -295,7 +312,7 @@
                             
                             <div class="flex flex-col items-center gap-3 w-48 group">
                                 <div class="node border-blue-700/30 bg-[#0b0f19] text-blue-400 w-full justify-center py-3">
-                                    <i class="fas fa-cog fa-spin" style="animation-duration: 4s"></i> Transform
+                                    <i class="fas fa-cog fa-spin" style="animation-duration: 4s" aria-hidden="true"></i> Transform
                                 </div>
                                 <span class="text-xs text-gray-500 font-code group-hover:text-blue-400 transition">Dataflow (Beam)</span>
                             </div>
@@ -304,7 +321,7 @@
                             
                             <div class="flex flex-col items-center gap-3 w-40 group">
                                 <div class="node border-green-700/30 bg-[#0b0f19] text-green-400 w-full justify-center py-3">
-                                    <i class="fas fa-database"></i> Sink
+                                    <i class="fas fa-database" aria-hidden="true"></i> Sink
                                 </div>
                                 <span class="text-xs text-gray-500 font-code group-hover:text-green-400 transition">BigQuery DW</span>
                             </div>
@@ -413,16 +430,20 @@
 
     <footer class="bg-[#0b0f19] border-t border-gray-800 py-12 mt-auto">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-gray-500 text-xs font-code">
-            <p>&copy; 2026 Athithyaraagul Sureshkumar. Process finished with exit code 0.</p>
+            <p>&copy; <span id="year"></span> Athithyaraagul Sureshkumar. Process finished with exit code 0.</p>
             <div class="flex gap-6 mt-4 md:mt-0">
-                <a href="https://linkedin.com/in/athithyaraagul" class="hover:text-white transition">LINKEDIN</a>
-                <a href="https://github.com/Athithyaraagul" class="hover:text-white transition">GITHUB</a>
+                <a href="https://linkedin.com/in/athithyaraagul" target="_blank" class="hover:text-white transition">LINKEDIN</a>
+                <a href="https://github.com/Athithyaraagul" target="_blank" class="hover:text-white transition">GITHUB</a>
                 <a href="mailto:athithyaraagul05@gmail.com" class="hover:text-white transition">EMAIL</a>
             </div>
         </div>
     </footer>
 
     <script>
+        // Set Current Year Dynamically
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Scroll Reveal Animation
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
